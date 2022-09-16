@@ -4,93 +4,95 @@
 #include <ctype.h>
 #include <stdlib.h>
 
-
 struct Stack
 {
- int top;
- unsigned capacity;
- int* array;
+    int top;
+    unsigned capacity;
+    int *array;
 };
 
-
-struct Stack* createStack( unsigned capacity )
+struct Stack *createStack(unsigned capacity)
 {
- struct Stack* stack = (struct Stack*) malloc(sizeof(struct Stack));
+    struct Stack *stack = (struct Stack *)malloc(sizeof(struct Stack));
 
- if (!stack) return NULL;
+    if (!stack)
+        return NULL;
 
- stack->top = -1;
- stack->capacity = capacity;
- stack->array = (int*) malloc(stack->capacity * sizeof(int));
+    stack->top = -1;
+    stack->capacity = capacity;
+    stack->array = (int *)malloc(stack->capacity * sizeof(int));
 
- if (!stack->array) return NULL;
+    if (!stack->array)
+        return NULL;
 
- return stack;
+    return stack;
 }
 
-int isEmpty(struct Stack* stack)
+int isEmpty(struct Stack *stack)
 {
- return stack->top == -1 ;
+    return stack->top == -1;
 }
 
-char peek(struct Stack* stack)
+char peek(struct Stack *stack)
 {
- return stack->array[stack->top];
+    return stack->array[stack->top];
 }
 
-char pop(struct Stack* stack)
+char pop(struct Stack *stack)
 {
- if (!isEmpty(stack))
-  return stack->array[stack->top--] ;
- return '$';
+    if (!isEmpty(stack))
+        return stack->array[stack->top--];
+    return '$';
 }
 
-void push(struct Stack* stack, char op)
+void push(struct Stack *stack, char op)
 {
- stack->array[++stack->top] = op;
+    stack->array[++stack->top] = op;
 }
 
-
-
-int evaluatePostfix(char* exp)
+int evaluatePostfix(char *exp)
 {
 
- struct Stack* stack = createStack(strlen(exp));
- int i;
+    struct Stack *stack = createStack(strlen(exp));
+    int i;
 
- // See if stack was created successfully
- if (!stack) return -1;
+    if (!stack)
+        return -1;
 
- // Scan all characters one by one
- for (i = 0; exp[i]; ++i)
- {
-  // If the scanned character is an operand (number here),
-  // push it to the stack.
-  if (isdigit(exp[i]))
-   push(stack, exp[i] - '0');
-
-  // If the scanned character is an operator, pop two
-  // elements from stack apply the operator
-  else
-  {
-   int val1 = pop(stack);
-   int val2 = pop(stack);
-   switch (exp[i])
-   {
-   case '+': push(stack, val2 + val1); break;
-   case '-': push(stack, val2 - val1); break;
-   case '*': push(stack, val2 * val1); break;
-   case '/': push(stack, val2/val1); break;
-   }
-  }
- }
- return pop(stack);
+    for (i = 0; exp[i]; ++i)
+    {
+        if (isdigit(exp[i]))
+            push(stack, exp[i] - '0');
+        else
+        {
+            int val1 = pop(stack);
+            int val2 = pop(stack);
+            switch (exp[i])
+            {
+            case '+':
+                push(stack, val2 + val1);
+                break;
+            case '-':
+                push(stack, val2 - val1);
+                break;
+            case '*':
+                push(stack, val2 * val1);
+                break;
+            case '/':
+                push(stack, val2 / val1);
+                break;
+            }
+        }
+    }
+    return pop(stack);
 }
 
 // Driver program to test above functions
 int main()
 {
- char exp[] = "231*+9-";
- printf ("postfix evaluation: %d", evaluatePostfix(exp));
- return 0;
+    char exp[50];
+    printf("Enter expresion:");
+    scanf("%s",exp);
+    printf("postfix evaluation: %d", evaluatePostfix(exp));
+    return 0;
 }
