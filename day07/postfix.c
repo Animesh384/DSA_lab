@@ -3,7 +3,7 @@ int isdigitt(char ch){
     if(ch>='0'&&ch<='9') return 1;
     return 0;
 }
-void caltopostfix(char *string){
+int caltopostfix(char *string){
     printf("Enter capacity of stack:");
     int n;
     scanf("%d",&n);
@@ -30,11 +30,16 @@ void caltopostfix(char *string){
                 case '/':
                 push(head,(ob1/ob2));
                 break;
-                
+
             }
         }
     }
+    return pop(head);
 }
 int main(){
-
+    char exp[50];
+    printf("Enter expresion:");
+    scanf("%s",exp);
+    printf("postfix evaluation: %d", caltopostfix(exp));
+    return 0;
 }
