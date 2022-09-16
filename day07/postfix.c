@@ -24,6 +24,13 @@ void caltopostfix(char *string){
                 case '-':
                 push(head,ob1-ob2);
                 break;
+                case '*':
+                push(head,(ob1*ob2));
+                break;
+                case '/':
+                push(head,(ob1/ob2));
+                break;
+                
             }
         }
     }
