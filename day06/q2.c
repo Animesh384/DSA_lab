@@ -73,7 +73,7 @@ void infiextopostfix(char* string,stack* head){
             pop(head);
         }
         else{
-            printf("%d>=%d\n",pre(peak(head)),pre(string[j]));
+            //printf("%d>=%d\n",pre(peak(head)),pre(string[j]));
             while(!isempty(head)&&pre(peak(head))>=pre(string[j])){
                 printf("%c\n",string[j]);
                 string[i++]=pop(head);
