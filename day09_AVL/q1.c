@@ -72,7 +72,7 @@ anode* insert(anode* node,int key){
         node->left=leftrotate(node->left);
         return  rightrotate(node);
     }
-    if(balance>-1&&key<node->left->val){
+    if(balance>-1&&key<node->right->val){
         node->left=rightrotate(node->left);
         return  leftrotate(node);
     }

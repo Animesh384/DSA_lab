@@ -1,4 +1,4 @@
-#include<stdio.h>
+/* #include<stdio.h>
 #include<stdlib.h>
 void reverse(int *arr,int n)
 {
@@ -30,4 +30,22 @@ int main()
     {
         printf("%d,",arr[i]);
     }
-}
+} */
+#include <iostream>
+using namespace std;
+template <class T>
+class Test
+private:
+T val;
+public:
+static int count;
+Test() { count++;
+template<class T>
+int Test<T>.•:count = O,
+int main()
+Test<int> a;
+Test<int> b;
+Test<double> c;
+cout << << endl;
+cout << Test<double>::count << endl;
+return O;
