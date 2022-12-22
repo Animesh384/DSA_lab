@@ -65,14 +65,14 @@ anode* insert(anode* node,int key){
     if(balance>1&&key<node->left->val){
         return rightrotate(node);
     }
-    if(balance>-1&&key>node->right->val){
+    if(balance<-1&&key>node->right->val){
          return leftrotate(node);
     }
     if(balance>1&&key>node->left->val){
         node->left=leftrotate(node->left);
         return  rightrotate(node);
     }
-    if(balance>-1&&key<node->right->val){
+    if(balance<-1&&key<node->right->val){
         node->left=rightrotate(node->left);
         return  leftrotate(node);
     }
